@@ -1,6 +1,7 @@
 import os
 import keyboard
 import time
+from collections import deque
 
 class maze:
     def __init__(self) -> None:
@@ -90,6 +91,34 @@ class maze:
                 self.printEND()
                 return False
         return True
+    
+    def find_path_to_end(self):
+        visited = set()
+        queue = deque([(self.ply.y, self.ply.x, [])])
+
+        while queue:
+            y, x, path = queue.popleft()
+            if (y, x) in visited:
+                continue
+
+            visited.add((y, x))
+
+            if (y, x) == (self.end.y, self.end.x):
+                return path
+
+            for dy, dx in [(0, 1), (1, 0), (0, -1), (-1, 0)]:
+                next_y, next_x = y + dy, x + dx
+
+                if not self.isInBound(next_y, next_x):
+                    continue
+
+                if self.maze[next_y][next_x] in ['X', 'P']:
+                    continue
+
+                new_path = path + [(next_y, next_x)]
+                queue.append((next_y, next_x, new_path))
+
+        return None
 
 class pos:
     def __init__(self) -> None:
