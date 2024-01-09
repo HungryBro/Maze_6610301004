@@ -119,6 +119,19 @@ class maze:
                 queue.append((next_y, next_x, new_path))
 
         return None
+    
+    def auto_move_to_end(self):
+        path = self.find_path_to_end()
+        if path:
+            for y, x in path:
+                self.maze[self.ply.y][self.ply.x] = " "
+                self.ply = pos(y, x)
+                self.maze[y][x] = "P"
+                time.sleep(0.25)
+                self.print()
+                if (y, x) == (self.end.y, self.end.x):
+                    self.printEND()
+                    break
 
 class pos:
     def __init__(self) -> None:
@@ -135,7 +148,7 @@ if __name__ == '__main__':
     m.print()
 
     while True:
-        if keyboard.is_pressed("q"):
+        if keyboard.is_pressed("q"): # click q to exit program
             print("Quit Program")
             break
         if keyboard.is_pressed("w"):
@@ -158,3 +171,7 @@ if __name__ == '__main__':
                 m.print()
             else:
                 break
+
+        if keyboard.is_pressed("p"): # click p to auto walk
+            m.auto_move_to_end()
+            break
