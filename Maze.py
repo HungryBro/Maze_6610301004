@@ -6,15 +6,18 @@ from collections import deque
 class maze:
     def __init__(self) -> None:
         self.maze = [
-                    ["X", "X", "X", "X", "X", "X", "X"],
-                    ["X", " ", " ", " ", "X", " ", "X"],
-                    ["X", " ", "X", " ", "X", " ", " "],
-                    ["X", " ", "X", " ", "X", " ", "X"],
-                    ["X", " ", "X", " ", " ", " ", "X"],
-                    ["X", " ", "X", "X", "X", "X", "X"],
+                    ["X", "X", "X", "X", "X", "X", "X", "X", "X"],
+                    ["X", " ", " ", " ", "X", " ", "X", " ", "X"],
+                    ["X", " ", "X", " ", "X", " ", "X", " ", "X"],
+                    ["X", " ", "X", " ", "X", " ", " ", " ", "X"],
+                    ["X", " ", " ", " ", "X", " ", "X", " ", "X"],
+                    ["X", " ", "X", " ", "X", " ", "X", " ", " "],
+                    ["X", " ", "X", " ", "X", " ", "X", " ", "X"],
+                    [" ", " ", "X", " ", " ", " ", "X", " ", "X"],
+                    ["X", "X", "X", "X", "X", "X", "X", "X", "X"],              
                     ]
-        self.ply = pos(5, 1)
-        self.end = pos(2, 6)
+        self.ply = pos(7, 0)
+        self.end = pos(5, 8)
         self.maze[self.ply.y][self.ply.x] = "P"
         self.maze[self.end.y][self.end.x] = "E"
     
